@@ -8,12 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
 
+    @IBOutlet weak var table: UITableView!
     @IBOutlet weak var sliderValue: UISlider!
     
     @IBAction func sliderMoved(sender: AnyObject) {
-        print(sliderValue)
+        //calling reloadData method runs the tableView methods whenever slider is moved/changed
+        table.reloadData()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        
+        let timesTable = Int(sliderValue.value * 20)
+        
+        cell.textLabel?.text = "\(timesTable * (indexPath.row + 1))"
+        
+        return cell
     }
     
     override func viewDidLoad() {
