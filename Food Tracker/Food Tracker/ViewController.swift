@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Properties
     
@@ -17,7 +17,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Handle the text field's user input through delegate callbacks. Self refers to the ViewController class because its inside the scope of the ViewController class definition.
+        nameTextField.delegate = self
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // Hide the keyboard
+        textField.resignFirstResponder()
+        // Returning true indicates text field should respond to the user pressing Return key by dismissing the keyboard
+        return true
     }
     
     // MARK: Actions
