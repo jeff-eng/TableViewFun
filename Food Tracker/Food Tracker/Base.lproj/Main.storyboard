@@ -42,9 +42,13 @@
                                     </button>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="CZb-XE-sap">
                                         <rect key="frame" x="0.0" y="117" width="240" height="240"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CZb-XE-sap" secondAttribute="height" multiplier="1:1" id="p8f-nq-rY0"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="nRd-ad-KEU" appends="YES" id="COp-VU-ktQ"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -63,9 +67,15 @@
                     <connections>
                         <outlet property="mealNameLabel" destination="I9F-4n-C1h" id="5kN-W3-7YB"/>
                         <outlet property="nameTextField" destination="d76-Id-7ho" id="p3C-uy-roi"/>
+                        <outlet property="photoImageView" destination="CZb-XE-sap" id="s1K-ZN-O6N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nRd-ad-KEU">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="g5s-lc-RYC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="139" y="136"/>
         </scene>
