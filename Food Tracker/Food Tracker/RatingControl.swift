@@ -12,7 +12,12 @@ class RatingControl: UIView {
 
     // MARK: Properties
     
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            // Trigger a layout update every time the rating changes. Ensures UI is always showing an accurate representation of the rating property value.
+            setNeedsLayout()
+        }
+    }
     var ratingButtons = [UIButton]()
     // Set spacing value between each star
     let spacing = 5
@@ -26,11 +31,15 @@ class RatingControl: UIView {
         let emptyStarImage = UIImage(named: "emptyStar")
         
         for _ in 0..<starCount {
-        // Create a red button
         let button = UIButton()
+            
         button.setImage(emptyStarImage, for: .normal)
         button.setImage(filledStarImage, for: .selected)
         button.setImage(filledStarImage, for: [.highlighted, .selected])
+        
+        // Makes sure the image doesn't show an additional highlight during the state change
+        button.adjustsImageWhenHighlighted = false
+        
         button.addTarget(self, action: #selector(RatingControl.ratingButtonTapped(button:)), for: .touchDown)
         // Add button to the array
         ratingButtons += [button]
@@ -51,6 +60,7 @@ class RatingControl: UIView {
             button.frame = buttonFrame
         }
         
+        updateButtonSelectionStates()
     }
     
     override public var intrinsicContentSize: CGSize {
@@ -62,6 +72,15 @@ class RatingControl: UIView {
     
     // MARK: Button Action
     func ratingButtonTapped(button: UIButton) {
-        print("Button pressed")
+        rating = ratingButtons.index(of: button)! + 1
+        
+        updateButtonSelectionStates()
+    }
+    
+    func updateButtonSelectionStates() {
+        for (index, button) in ratingButtons.enumerated() {
+            // If the index of a button is less than the rating, that button should be selected.
+            button.isSelected = index < rating
+        }
     }
 }

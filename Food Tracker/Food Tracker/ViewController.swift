@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mealNameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +73,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         // Method asks ViewController to present the view controller defined by imagePickerController which is photo library because it was defined above
         present(imagePickerController, animated: true, completion: nil)
     }
-    @IBAction func setDefaultLabelText(_ sender: UIButton) {
-        mealNameLabel.text = "Default Text"
-    }
-
     
 }
 
