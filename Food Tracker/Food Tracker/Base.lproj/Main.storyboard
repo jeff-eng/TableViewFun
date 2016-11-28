@@ -81,7 +81,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yNc-s9-wvJ">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yNc-s9-wvJ">
                                 <rect key="frame" x="20" y="80" width="343" height="338"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d76-Id-7ho">
@@ -112,9 +112,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="yNc-s9-wvJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="34q-Re-4z2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yNc-s9-wvJ" secondAttribute="trailing" id="JfF-vi-9wH"/>
-                            <constraint firstItem="yNc-s9-wvJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aFa-0A-ifU"/>
+                            <constraint firstItem="yNc-s9-wvJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="34q-Re-4z2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yNc-s9-wvJ" secondAttribute="trailing" constant="-4" id="JfF-vi-9wH"/>
+                            <constraint firstItem="yNc-s9-wvJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="aFa-0A-ifU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Meal" id="T3I-3e-zpx">
