@@ -38,7 +38,20 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        // Calls the method to check that text field is not empty (also enables/disables Save button)
+        checkValidMealName()
+        // Sets the title of the scene to that text.
+        navigationItem.title = textField.text
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
+    }
+    
+    func checkValidMealName() {
+        // Disable the Save button if the text field is empty. The Save button is enabled if the  name text field has a value. The saveButton's isEnabled property evaluates whether the text field is empty. If it is empty, the boolean value is true combined with the ! operator will make the whole statement evaluate to FALSE which disables the save button.  The opposite happens when the whole statement evaluates to TRUE and enables the Save button.
+        let text = nameTextField.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
     }
     
     // MARK: UIImagePickerControllerDelegate
