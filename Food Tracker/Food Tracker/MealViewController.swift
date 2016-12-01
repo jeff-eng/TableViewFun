@@ -87,7 +87,15 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     // Tapping the Cancel button in the meal scene dismisses the MealViewController
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        if isPresentingInAddMealMode {
+            dismiss(animated: true, completion: nil)
+        } else {
+        // Pops current view controller (meal scene) off the navigation stack of navigationController and performs transition animation.
+          navigationController!.popViewController(animated: true)
+        }
+        
     }
     
     // This method lets you configure a view controller before it's presented.
