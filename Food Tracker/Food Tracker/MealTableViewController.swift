@@ -124,11 +124,21 @@ class MealTableViewController: UITableViewController {
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? MealViewController, let meal = sourceViewController.meal {
-            // Add a new meal.
-            let newIndexPath = NSIndexPath(row: meals.count, section: 0)
-            meals.append(meal)
             
-            tableView.insertRows(at: [newIndexPath as IndexPath], with: .bottom)
+            // This code checks whether a row in the table view is selected. If it is, that means a user tapped one of the table view cells to edit a meal.
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing meal.
+                    // Updates appropriate entry in meals to store updated meal information.
+                meals[selectedIndexPath.row] = meal
+                    // Reloads appropriate row in table view to display the changed data.
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                // Add a new meal.
+                let newIndexPath = NSIndexPath(row: meals.count, section: 0)
+                meals.append(meal)
+                tableView.insertRows(at: [newIndexPath as IndexPath], with: .bottom)
+            }
+            
         }
     }
 }
