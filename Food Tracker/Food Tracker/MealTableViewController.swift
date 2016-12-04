@@ -146,4 +146,21 @@ class MealTableViewController: UITableViewController {
             
         }
     }
+    
+    // MARK: NSCoding
+    
+    func saveMeals() {
+        // Attempt to archive meals array to specific location, returning true if successful. Uses the constant Meal.ArchiveURL defined in Meal class to identify where to save the information.
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
+        
+        // Testing whether meals failed to save.
+        if !isSuccessfulSave {
+            print("Failed to save meals to disk")
+        }
+    }
+    
+    func loadMeals() -> [Meal]? {
+        // Attempt to unarchive the object stored at the path Meal.ArchiveURL.path and downcast that object to an array of Meal objects. Use optional downcast because array may or may not have been stored, and returns nil if downcast fails.
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Meal.ArchiveURL.path) as? [Meal]
+    }
 }
