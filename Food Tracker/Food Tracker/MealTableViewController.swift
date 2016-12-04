@@ -19,8 +19,13 @@ class MealTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
+        // Load any saved meals, otherwise load sample data.  Adds the meals that were successfully loaded, to the meals array.
+        if let savedMeals = loadMeals() {
+            meals += savedMeals
+        } else {
         // Load the sample data.
         loadSampleMeals()
+        }
     }
 
     // **Helper method to load sample data into the app
@@ -86,6 +91,8 @@ class MealTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Remove the Meal object from the meals array
             meals.remove(at: indexPath.row)
+            // Save the meals.
+            saveMeals()
             // Deletes the corresponding row from the table view.
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -143,7 +150,8 @@ class MealTableViewController: UITableViewController {
                 meals.append(meal)
                 tableView.insertRows(at: [newIndexPath as IndexPath], with: .bottom)
             }
-            
+            // Save the meals.
+            saveMeals()
         }
     }
     
